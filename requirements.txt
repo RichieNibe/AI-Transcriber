@@ -1,0 +1,5 @@
+fastapi==0.115.12
+python-dotenv==1.1.0
+Requests==2.32.3
+starlette==0.46.1
+uvicorn==0.34.0
