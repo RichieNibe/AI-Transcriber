@@ -3,6 +3,7 @@ import requests
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI, Request
+from starlette.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
  
@@ -48,7 +49,13 @@ async def get_temporary_api_key():
             content={"error": "Server failed to obtain temporary api key."},
         )
  
- 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins. You can replace "*" with specific origins, e.g., ["http://localhost:3000"]
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods like GET, POST, etc.
+    allow_headers=["*"],  # Allows all headers
+)
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 3001))
     uvicorn.run(app, host="0.0.0.0", port=port)

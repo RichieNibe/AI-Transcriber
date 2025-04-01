@@ -17,7 +17,7 @@
         let recordTranscribeState = "stopped"; // "stopped" | "starting" | "running" | "stopping"
 
         async function getTemporaryApiKey() {
-            const response = await fetch('/temporary-api-key');
+            const response = await fetch('http://0.0.0.0:3001/temporary-api-key');
             return await response.json();
         }
 
